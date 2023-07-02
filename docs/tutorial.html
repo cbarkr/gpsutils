@@ -1,0 +1,446 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Guide" href="guide.html" /><link rel="prev" title="Overview" href="overview.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Tutorial - gpsutils 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">gpsutils 0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">gpsutils 0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Tutorial</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="guide.html">Guide</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/route.html">Route</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/track.html">Track</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/region.html">Region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/gpxparser.html">GPXParser</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/route.html">Route</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/track.html">Track</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/region.html">Region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/gpxparser.html">GPXParser</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">#</a></h1>
+<p>In this tutorial, you’ll learn the basics of GPSUtils by working with a real-life example: interpreting data from a GPS device.
+Modern devices, such as activity trackers, often store GPS data in GPX files.
+By the end of this lesson, you should be able to parse GPX files, extract the useful information, and explore that data using <cite>GPSUtils</cite> and Google Maps.</p>
+<p>Let’s get started!</p>
+<hr class="docutils"/>
+<section id="part-1-parsing-a-gpx-file">
+<h2>Part 1: Parsing a GPX file<a class="headerlink" href="#part-1-parsing-a-gpx-file" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more information on GPX files or to view the source of <cite>track.gpx</cite>, check out <a class="reference external" href="https://wiki.openstreetmap.org/wiki/GPX">https://wiki.openstreetmap.org/wiki/GPX</a> [2]</p>
+</div>
+<p>First, create a new GPX file called <cite>track.gpx</cite>.
+Inside that file, add the following contents:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;gpx</span><span class="w"> </span><span class="na">version=</span><span class="s">"1.0"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Example<span class="w"> </span>gpx<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;wpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57638889"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89263889"</span><span class="nt">&gt;&lt;ele&gt;</span>2372<span class="nt">&lt;/ele&gt;&lt;name&gt;</span>LAGORETICO<span class="nt">&lt;/name&gt;&lt;/wpt&gt;</span>
+<span class="w">    </span><span class="nt">&lt;trk&gt;&lt;name&gt;</span>Example<span class="w"> </span>gpx<span class="nt">&lt;/name&gt;&lt;number&gt;</span>1<span class="nt">&lt;/number&gt;&lt;trkseg&gt;</span>
+<span class="w">        </span><span class="nt">&lt;trkpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57608333"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89241667"</span><span class="nt">&gt;&lt;ele&gt;</span>2376<span class="nt">&lt;/ele&gt;&lt;time&gt;</span>2007-10-14T10:09:57Z<span class="nt">&lt;/time&gt;&lt;/trkpt&gt;</span>
+<span class="w">        </span><span class="nt">&lt;trkpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57619444"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89252778"</span><span class="nt">&gt;&lt;ele&gt;</span>2375<span class="nt">&lt;/ele&gt;&lt;time&gt;</span>2007-10-14T10:10:52Z<span class="nt">&lt;/time&gt;&lt;/trkpt&gt;</span>
+<span class="w">        </span><span class="nt">&lt;trkpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57641667"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89266667"</span><span class="nt">&gt;&lt;ele&gt;</span>2372<span class="nt">&lt;/ele&gt;&lt;time&gt;</span>2007-10-14T10:12:39Z<span class="nt">&lt;/time&gt;&lt;/trkpt&gt;</span>
+<span class="w">        </span><span class="nt">&lt;trkpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57650000"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89280556"</span><span class="nt">&gt;&lt;ele&gt;</span>2373<span class="nt">&lt;/ele&gt;&lt;time&gt;</span>2007-10-14T10:13:12Z<span class="nt">&lt;/time&gt;&lt;/trkpt&gt;</span>
+<span class="w">        </span><span class="nt">&lt;trkpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57638889"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89302778"</span><span class="nt">&gt;&lt;ele&gt;</span>2374<span class="nt">&lt;/ele&gt;&lt;time&gt;</span>2007-10-14T10:13:20Z<span class="nt">&lt;/time&gt;&lt;/trkpt&gt;</span>
+<span class="w">        </span><span class="nt">&lt;trkpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57652778"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89322222"</span><span class="nt">&gt;&lt;ele&gt;</span>2375<span class="nt">&lt;/ele&gt;&lt;time&gt;</span>2007-10-14T10:13:48Z<span class="nt">&lt;/time&gt;&lt;/trkpt&gt;</span>
+<span class="w">        </span><span class="nt">&lt;trkpt</span><span class="w"> </span><span class="na">lat=</span><span class="s">"46.57661111"</span><span class="w"> </span><span class="na">lon=</span><span class="s">"8.89344444"</span><span class="nt">&gt;&lt;ele&gt;</span>2376<span class="nt">&lt;/ele&gt;&lt;time&gt;</span>2007-10-14T10:14:08Z<span class="nt">&lt;/time&gt;&lt;/trkpt&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/trkseg&gt;&lt;/trk&gt;</span>
+<span class="nt">&lt;/gpx&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In real life, this file will already be created for you by your GPS device.</p>
+</div>
+<p>In the same directory as <cite>track.gpx</cite>, create a new file called <cite>tutorial.py</cite>, which you will use for the remainder of this tutorial.</p>
+<p>To parse <cite>track.gpx</cite>, open <cite>tutorial.py</cite> and place the following Python code within:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gpsutils</span>
+
+<span class="c1"># Open file for reading</span>
+<span class="n">gpxfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'track.gpx'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span>
+
+<span class="c1"># Initialize our parser</span>
+<span class="n">gpxparser</span> <span class="o">=</span> <span class="n">gpsutils</span><span class="o">.</span><span class="n">GPXParser</span><span class="p">()</span>
+
+<span class="c1"># Parse the file</span>
+<span class="n">gpxparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">gpxfile</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note, GPX files may contain more than one track, so <cite>gpxparser.gpx.tracks</cite> is a list.</p>
+</div>
+</section>
+<hr class="docutils"/>
+<section id="part-2-extracting-useful-information">
+<h2>Part 2: Extracting useful information<a class="headerlink" href="#part-2-extracting-useful-information" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To learn about specific tasks with tracks, take a look at the examples in <a class="reference internal" href="guide/track.html"><span class="doc">Track</span></a>.</p>
+</div>
+<p>All of the information we want and need (at least for the purposes of this tutorial) already live in <cite>gpxparser.gpx</cite>!
+But you may be asking yourself, “what can we do with this?”
+One option is to convert it into a more readable format, such as Comma Separated Values (CSV).</p>
+<p>To convert our GPX object into a CSV file, insert this into <cite>tutorial.py</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gpxparser</span><span class="o">.</span><span class="n">gpx</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Run <cite>tutorial.py</cite> by entering <cite>python3 tutorial.py</cite> in the commandline.</p>
+<p>This produces a file named <cite>gpxparser.csv</cite> which contains:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>type,latitude,longitude,elevation,time,name,description
+W,46.57638889,8.89263889,0,2023-06-21 05:42:23.566970,LAGORETICO,
+
+type,latitude,longitude,elevation,time,name,description
+T,46.57608333,8.89241667,2376.0,2007-10-14 10:09:57+00:00,,
+T,46.57619444,8.89252778,2375.0,2007-10-14 10:10:52+00:00,,
+T,46.57641667,8.89266667,2372.0,2007-10-14 10:12:39+00:00,,
+T,46.5765,8.89280556,2373.0,2007-10-14 10:13:12+00:00,,
+T,46.57638889,8.89302778,2374.0,2007-10-14 10:13:20+00:00,,
+T,46.57652778,8.89322222,2375.0,2007-10-14 10:13:48+00:00,,
+T,46.57661111,8.89344444,2376.0,2007-10-14 10:14:08+00:00,,
+</pre></div>
+</div>
+<p>To extract only the points belonging to a track, edit the <cite>to_csv()</cite> call like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Before</span>
+<span class="n">gpxparser</span><span class="o">.</span><span class="n">gpx</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
+
+<span class="c1"># After</span>
+<span class="n">gpxparser</span><span class="o">.</span><span class="n">gpx</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">include_waypoints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_routes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which should alter <cite>gpxparser.csv</cite> (once you re-run the script) to contain only:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>type,latitude,longitude,elevation,time,name,description
+T,46.57608333,8.89241667,2376.0,2007-10-14 10:09:57+00:00,,
+T,46.57619444,8.89252778,2375.0,2007-10-14 10:10:52+00:00,,
+T,46.57641667,8.89266667,2372.0,2007-10-14 10:12:39+00:00,,
+T,46.5765,8.89280556,2373.0,2007-10-14 10:13:12+00:00,,
+T,46.57638889,8.89302778,2374.0,2007-10-14 10:13:20+00:00,,
+T,46.57652778,8.89322222,2375.0,2007-10-14 10:13:48+00:00,,
+T,46.57661111,8.89344444,2376.0,2007-10-14 10:14:08+00:00,,
+</pre></div>
+</div>
+<p>Likewise, you can choose to extract only waypoints, tracks, or routes, or any combination of those using the <cite>include_*</cite> parameters.
+For a complete list of parameters, please see <a class="reference internal" href="api/gpxparser.html#GPX.to_csv" title="GPX.to_csv"><code class="xref py py-class docutils literal notranslate"><span class="pre">GPX.to_csv</span></code></a>.</p>
+</section>
+<hr class="docutils"/>
+<section id="part-3-exploring-our-data">
+<h2>Part 3: Exploring our data<a class="headerlink" href="#part-3-exploring-our-data" title="Permalink to this headline">#</a></h2>
+<p>Let’s now put this data into an actual map.
+After all, maps will contextualize our data!</p>
+<p>Head over to <a class="reference external" href="https://www.google.ca/maps/about/mymaps/">https://www.google.ca/maps/about/mymaps/</a>, click “Get Started”, then “Create a New Map”.</p>
+<p>Your screen should look something like this:</p>
+<img alt="_images/map_blank.png" class="align-center" src="_images/map_blank.png"/>
+<p>Select “Import” from the layer panel located on the left:</p>
+<img alt="_images/map_blank_import_circle.png" class="align-center" src="_images/map_blank_import_circle.png"/>
+<p>Then select <cite>gpxparser.csv</cite>.</p>
+<p>Once the file has processed, you will be asked to identify which columns represent our point’s locations.
+Select “latitude” and “longitude”:</p>
+<img alt="_images/map_import_coords.png" class="align-center" src="_images/map_import_coords.png"/>
+<p>Then press “Continue”.</p>
+<p>Next, choose which column will be used as each point’s title.
+Title choice will be based on preference, but here, “time” seems like a good option.</p>
+<img alt="_images/map_import_title.png" class="align-center" src="_images/map_import_title.png"/>
+<p>Now our points should be added to the map!</p>
+<img alt="_images/map_import_result.png" class="align-center" src="_images/map_import_result.png"/>
+<p>From here, you can use the line tool to connect each point (ie. re-tracing the track)</p>
+</section>
+<hr class="docutils"/>
+<section id="part-4-putting-it-together">
+<h2>Part 4: Putting it together<a class="headerlink" href="#part-4-putting-it-together" title="Permalink to this headline">#</a></h2>
+<p>Once you’re done, <cite>tutorial.py</cite> should look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gpsutils</span>
+
+<span class="c1"># Open file for reading</span>
+<span class="n">gpxfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'track.gpx'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span>
+
+<span class="c1"># Initialize our parser</span>
+<span class="n">gpxparser</span> <span class="o">=</span> <span class="n">gpsutils</span><span class="o">.</span><span class="n">GPXParser</span><span class="p">()</span>
+
+<span class="c1"># Parse the file</span>
+<span class="n">gpxparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">gpxfile</span><span class="p">)</span>
+
+<span class="c1"># Convert to CSV</span>
+<span class="n">gpxparser</span><span class="o">.</span><span class="n">gpx</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">include_waypoints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_routes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That’s all!</p>
+<p>Of course, this is only a taste of what you can do using <cite>GPSUtils</cite>.</p>
+<hr class="docutils"/>
+<section id="where-to-go-from-here">
+<h3>Where to go from here?<a class="headerlink" href="#where-to-go-from-here" title="Permalink to this headline">#</a></h3>
+<p>Take a look at the <a class="reference internal" href="guide.html"><span class="doc">Guide</span></a></p>
+<p>Check out the <a class="reference internal" href="api.html"><span class="doc">API Reference</span></a></p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="guide.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Guide</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="overview.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Overview</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Callum Barker
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Tutorial</a><ul>
+<li><a class="reference internal" href="#part-1-parsing-a-gpx-file">Part 1: Parsing a GPX file</a></li>
+<li><a class="reference internal" href="#part-2-extracting-useful-information">Part 2: Extracting useful information</a></li>
+<li><a class="reference internal" href="#part-3-exploring-our-data">Part 3: Exploring our data</a></li>
+<li><a class="reference internal" href="#part-4-putting-it-together">Part 4: Putting it together</a><ul>
+<li><a class="reference internal" href="#where-to-go-from-here">Where to go from here?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

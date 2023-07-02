@@ -1,0 +1,49 @@
+########
+Overview
+########
+
+`GPSUtils` is meant to be short and simple, so this introduction will get straight to the point. 
+When you're ready for more detail, try out the :doc:`tutorial` or take a look at the :doc:`api`!
+
+----
+
+Getting Started
+===============
+
+The simplest way to use GPSUtils is:
+
+.. code-block:: python
+
+    >>> import gpsutils
+
+    # Create a track
+    >>> my_track = gpsutils.Track()
+
+    # The track is initially empty
+    >>> print(my_track)
+    Track(track=[], name=, description=)
+
+    # Let's change that by creating some waypoints
+    >>> waypoints = [
+    ...     gpsutils.Waypoint(0, 0),
+    ...     gpsutils.Waypoint(0.1, 0.1),
+    ...     gpsutils.Waypoint(0.2, 0.2)
+    ... ]
+
+    # And add them to the track
+    >>> for w in waypoints:
+    ...     my_track.add_waypoint(w)
+
+    >>> print(my_track)
+    Track(track=[Waypoint(latitude=0, longitude=0, elevation=0, time=2023-06-28 23:11:33.518548, name=, description=), Waypoint(latitude=0.1, longitude=0.1, elevation=0, time=2023-06-28 23:11:33.518548, name=, description=), Waypoint(latitude=0.2, longitude=0.2, elevation=0, time=2023-06-28 23:11:33.518548, name=, description=)], name=, description=)
+
+    # What if we want to see the edges between each waypoint?
+    >>> print(mytrack.get_edges())
+    [(Waypoint(latitude=0, longitude=0, elevation=0, time=2023-06-28 23:11:33.518548, name=, description=), Waypoint(latitude=0.1, longitude=0.1, elevation=0, time=2023-06-28 23:11:33.518548, name=, description=)), (Waypoint(latitude=0.1, longitude=0.1, elevation=0, time=2023-06-28 23:11:33.518548, name=, description=), Waypoint(latitude=0.2, longitude=0.2, elevation=0, time=2023-06-28 23:11:33.518548, name=, description=))]
+
+----
+
+Ready for more?
+===============
+
+Try out the :doc:`tutorial`!

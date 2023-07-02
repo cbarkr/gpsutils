@@ -1,0 +1,82 @@
+#####
+Track
+#####
+
+.. py:class:: Track
+
+    Represents a track
+
+    .. py:attribute:: track
+      
+        List of all waypoints that comprise a track
+        
+        :type: list[Waypoint]
+    
+    .. py:attribute:: name
+
+        An optional name for the tracl
+
+        :type: Optional[str]
+
+    .. py:attribute:: description
+
+        An optional description for the track
+
+        :type: Optional[str]
+
+    .. py:method:: set(track)
+
+        Set the track
+
+        :param track: The track to set
+        :type track: list[Waypoint]
+
+    .. py:method:: reset()
+
+        Reset the track
+
+    .. py:method:: add_waypoint(waypoint)
+
+        Add a waypoint to the end of the track
+
+        :param waypoint: The waypoint to add
+        :type waypoint: Waypoint
+
+    .. py:method:: remove_waypoint(waypoint)
+
+        Remove a waypoint from the track and return it
+
+        :param waypoint: The waypoint to remove
+        :type waypoint: Waypoint
+        :return: The removed waypoint
+        :rtype: Waypoint
+
+    .. py:method:: get_edges()
+
+        Get the edges between each waypoint
+
+        :return: A list of the edges connecting the waypoints in the track
+        :rtype: List[Tuple[Waypoint, Waypoint]]
+
+    .. py:method:: edge_distances_m()
+
+        Get the distance between each point in a track
+
+        :return: A list of the distances between each waypoint in a track in metres
+        :rtype: List[float]
+
+    .. py:method:: track_distance_m()
+
+        Get the distance of the track in metres
+
+        :return: The overall distance of the track in metres
+        :rtype: float
+
+    .. py:method:: distance_to_end_m(waypoint)
+
+        Get the distance to the end of the track in metres
+
+        :param waypoint: The waypoint to compare
+        :type waypoint: Waypoint
+        :return: The distance to the end of the track in metres
+        :rtype: float

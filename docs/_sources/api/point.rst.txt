@@ -1,0 +1,135 @@
+#####
+Point
+#####
+
+*********
+Waypoints
+*********
+
+.. py:class:: Waypoint
+
+    Represents a waypoint using latitude, longitude, and optionally, elevation.
+
+    .. py:attribute:: latitude
+      
+        Latitude in [-90, 90]
+        
+        :type: float
+    
+    .. py:attribute:: longitude
+
+        Longitude in [-180, 180]
+      
+        :type: float
+
+    .. py:attribute:: elevation
+
+        Elevation in metres above datum (~=sea level)
+
+        :type: int
+    
+    .. py:attribute:: time
+
+        An optional time for the point
+
+        :type: Optional[datetime]
+
+    .. py:attribute:: name
+
+        An optional name for the point
+
+        :type: Optional[str]
+
+    .. py:attribute:: description
+
+        An optional description for the point
+
+        :type: Optional[str]
+
+    .. py:method:: set(lat: float, lon: float)
+        
+        Set the waypoint
+
+        :param lat: Latitude
+        :type lat: float
+
+        :param long: Longitude
+        :type lat: float
+
+    .. py:method:: compare_m(waypoint: Waypoint)
+        
+        Get the distance between two waypoints in metres using the haversine formula [3]
+
+        :param waypoint: The waypoint to compare this waypoint to
+        :type waypoint: Waypoint
+        :return: The distance in metres
+        :rtype: float
+
+----
+
+***********
+Routepoints
+***********
+
+.. py:class:: Routepoint(Waypoint)
+
+    Represents a routepoint using latitude, longitude, and optionally, elevation.
+    Structurally identical to `Waypoint`.
+
+    .. py:attribute:: latitude
+
+        Latitude in [-90, 90]
+      
+        :type: float
+    
+    .. py:attribute:: longitude
+
+        Longitude in [-180, 180]
+      
+        :type: float
+    
+    .. py:attribute:: elevation
+
+        Elevation in metres above datum (~=sea level)
+
+        :type: int
+
+    .. py:attribute:: time
+
+        An optional time for the point
+
+        :type: Optional[datetime]
+
+    .. py:attribute:: name
+
+        An optional name for the point
+
+        :type: Optional[str]
+
+    .. py:attribute:: description
+
+        An optional description for the point
+
+        :type: Optional[str]
+
+    .. py:method:: set(lat: float, lon: float, elev: int)
+        
+        Set the routepoint
+
+        :param lat: Latitude
+        :type lat: float
+
+        :param long: Longitude
+        :type lat: float
+
+        :param elev: Elevation
+        :type lat: int
+
+    .. py:method:: compare_m(waypoint: Waypoint)
+        
+        Get the distance between two routepoints in metres using the haversine formula [3]
+
+        :param waypoint: The routepoint to compare this routepoint to
+        :type waypoint: Waypoint, Waypoint, or Routepoint
+        :return: The distance in metres
+        :rtype: float

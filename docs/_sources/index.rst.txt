@@ -1,0 +1,40 @@
+########
+GPSUtils
+########
+
+.. image:: images/logo.png
+    :align: center
+
+GPSUtils is a basic GPS utility module for Python 3.5+. 
+Designed to be short and simple.
+
+Easily:
+
+- Manipulate points
+- Work with tracks, regions, and routes
+- Utilize GPS Exchange Format (GPX) files
+
+----
+
+How these docs are structured
+=============================
+
+We recommend exploring the following documents in order:
+
+- :doc:`overview` introduces you to `GPSUtils`
+- :doc:`tutorial` walks you through practical use of `GPSUtils`
+- :doc:`guide` covers key ideas and background information
+- :doc:`api` contains technical reference
+
+----
+
+Contents
+========
+
+.. toctree::
+   :maxdepth: 2
+
+   overview
+   tutorial
+   guide
+   api

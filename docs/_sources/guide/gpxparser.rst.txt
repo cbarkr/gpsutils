@@ -1,0 +1,52 @@
+#########
+GPXParser
+#########
+
+GPX is a data format for the interchange of GPS data (waypoints, routes, tracks) between applications and Web services on the Internet 
+[`1 <https://www.topografix.com/gpx.asp>`_]. 
+Modern devices, such as activity trackers, often store GPS data in GPX files.
+`GPXParser` provides utilities for parsing GPX files.
+
+.. note::
+    
+    Want a hands-on example of how to use `GPXParser`? Try out the :doc:`../tutorial`!
+
+----
+
+***************
+Using GPXParser
+***************
+
+1. Create the GPXParser
+2. Parse a GPX document using the GPXParser
+3. Convert the document to waypoints, tracks, or routes
+4. Perform some operations on the resulting structures
+
+----
+
+*******
+Example
+*******
+
+.. code-block:: python
+
+    import gpsutils
+
+    gpxfile = open('test.gpx', 'r')
+
+    gpxparser = gpsutils.GPXParser()
+    gpxparser.parse(gpxfile)
+
+    waypoints = gpxparser.gpx.waypoints
+    tracks = gpxparser.gpx.tracks
+    routes = gpxparser.gpx.routes
+
+----
+
+**********************
+Where to go from here?
+**********************
+
+Check out the :doc:`../api/gpxparser` API Reference
+
+Try out the :doc:`../tutorial` if you haven't already!

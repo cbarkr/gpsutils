@@ -1,0 +1,114 @@
+#####
+Route
+#####
+
+Routes are a particular way between places.
+Internally, they contain an ordered list of :class:`Routepoint` leading to a destination. 
+
+----
+
+************
+Using Routes
+************
+
+Routes are used like so:
+
+1. Create the Route
+2. Add some Routepoints to the Route
+3. Perform some operations with the Route
+
+----
+
+*******
+Example
+*******
+
+.. note::
+    The following example assumes you are familiar with :class:`Routepoint`.
+
+For example, let's consider the following route:
+
+.. image:: ../images/track_route.png
+    :align: center
+
+We can represent this in `GPSUtils` using this code:
+
+.. code-block:: python
+
+    import gpsutils
+
+    route = gpsutils.Route()
+
+    routepoint1 = gpsutils.Routepoint(0, 0)
+    routepoint2 = gpsutils.Routepoint(0, 1)
+    routepoint3 = gpsutils.Routepoint(1, 1)
+
+    route.add_routepoint(routepoint1)
+    route.add_routepoint(routepoint2)
+    route.add_routepoint(routepoint3)
+
+Check it
+========
+
+.. code-block:: python
+
+    >>> print(route)
+    Route(route=[Routepoint(latitude=0, longitude=0, elevation=0, time=2023-06-28 23:07:27.150741, name=, description=), Routepoint(latitude=0, longitude=1, elevation=0, time=2023-06-28 23:07:27.150741, name=, description=), Routepoint(latitude=1, longitude=1, elevation=0, time=2023-06-28 23:07:27.150741, name=, description=)], name=, description=)
+
+    >>> print(route.get_edges())
+    [(Routepoint(latitude=0, longitude=0, elevation=0, time=2023-06-28 23:07:27.150741, name=, description=), Routepoint(latitude=0, longitude=1, elevation=0, time=2023-06-28 23:07:27.150741, name=, description=)), (Routepoint(latitude=0, longitude=1, elevation=0, time=2023-06-28 23:07:27.150741, name=, description=), Routepoint(latitude=1, longitude=1, elevation=0, time=2023-06-28 23:07:27.150741, name=, description=))]
+
+----
+
+*******************
+Working with Routes
+*******************
+
+Without doing anything too fancy, we can answer a few questions about our route:
+
+1. Which pairs of points are connected? (How do we get from one place to another?)
+2. How long is each edge between each pair of points? (How far is it from one place to another?)
+3. How far is one point from the end (Are we there yet?)
+
+.. note::
+    
+    The following sections use the track imported in the :doc:`../tutorial` *as if it were a route*
+
+.. code-block:: python
+
+    # 1. How do we get from one place to another?
+    edges = route.get_edges()
+
+    # 2. How far is it from one place to another? (in metres)
+    edge_distances = route.edge_distances_m()
+
+    # 3. Are we there yet?
+    # For the sake of example, let's say we're at (46.57650000, 8.89280556)
+    remaining_distance = route.distance_to_end_m(gpsutils.Routepoint(46.57650000, 8.89280556))
+
+Check it
+========
+
+.. code-block:: python
+
+    # 1. How do we get from one place to another?
+    >>> print(edges)
+    [(Routepoint(latitude=46.57608333, longitude=8.89241667, elevation=2376.0, time=2007-10-14 10:09:57+00:00, name=, description=), Routepoint(latitude=46.57619444, longitude=8.89252778, elevation=2375.0, time=2007-10-14 10:10:52+00:00, name=, description=)), (Routepoint(latitude=46.57619444, longitude=8.89252778, elevation=2375.0, time=2007-10-14 10:10:52+00:00, name=, description=), Routepoint(latitude=46.57641667, longitude=8.89266667, elevation=2372.0, time=2007-10-14 10:12:39+00:00, name=, description=)), (Routepoint(latitude=46.57641667, longitude=8.89266667, elevation=2372.0, time=2007-10-14 10:12:39+00:00, name=, description=), Routepoint(latitude=46.5765, longitude=8.89280556, elevation=2373.0, time=2007-10-14 10:13:12+00:00, name=, description=)), (Routepoint(latitude=46.5765, longitude=8.89280556, elevation=2373.0, time=2007-10-14 10:13:12+00:00, name=, description=), Routepoint(latitude=46.57638889, longitude=8.89302778, elevation=2374.0, time=2007-10-14 10:13:20+00:00, name=, description=)), (Routepoint(latitude=46.57638889, longitude=8.89302778, elevation=2374.0, time=2007-10-14 10:13:20+00:00, name=, description=), Routepoint(latitude=46.57652778, longitude=8.89322222, elevation=2375.0, time=2007-10-14 10:13:48+00:00, name=, description=)), (Routepoint(latitude=46.57652778, longitude=8.89322222, elevation=2375.0, time=2007-10-14 10:13:48+00:00, name=, description=), Routepoint(latitude=46.57661111, longitude=8.89344444, elevation=2376.0, time=2007-10-14 10:14:08+00:00, name=, description=))]
+
+    # 2. How far is it from one place to another? (in metres)
+    >>> print(edge_distances)
+    [14.99223974762043, 26.89468169228881, 14.090906258340778, 21.003272299148577, 21.43328858030647, 19.34812015069195]
+
+    # 3. Are we there yet?
+    >>> print(remaining_distance)
+    50.370657604293456
+
+----
+
+**********************
+Where to go from here?
+**********************
+
+Check out the :doc:`../api/route` API Reference
+
+Try out the :doc:`../tutorial` if you haven't already!

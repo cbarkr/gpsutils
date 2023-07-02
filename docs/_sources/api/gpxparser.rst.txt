@@ -1,0 +1,94 @@
+#########
+GPXParser
+#########
+
+***
+GPX
+***
+
+.. py:class:: GPX
+
+    Represents a GPX document
+
+    .. py:attribute:: doc
+
+        The parsed GPX document
+
+        :type: str
+
+    .. py:attribute:: waypoints
+
+        A list of waypoints from the document
+
+        :type: list[Waypoint]
+    
+    .. py:attribute:: tracks
+
+        A list of tracks from the document
+
+        :type: list[Track]
+
+    .. py:attribute:: routes
+
+        A list of routes from the document
+
+        :type: list[Route]
+
+    .. py:method:: to_csv(include_waypoints, include_tracks, include_routes)
+
+        :param include_waypoints: A bool determining if waypoints should be included in the resulting CSV file. Defaults to `True`.
+        :type include_waypoints: bool
+        :param include_tracks: A bool determining if tracks should be included in the resulting CSV file. Defaults to `True`.
+        :type include_tracks: bool
+        :param include_routes: A bool determining if routes should be included in the resulting CSV file. Defaults to `True`.
+        :type include_routes: bool
+        :return: The parsed GPX object
+        :rtype: GPX
+        
+        Convert the parsed GPX document into a CSV file
+
+----
+
+*********
+GPXParser
+*********
+
+.. py:class:: GPXParser
+
+    Provides safe parsing and basic utilities for GPX files
+
+    .. py:attribute:: gpx
+
+        An object containing the parsed GPX file 
+
+        :type: GPX
+
+    .. py:method:: parse(doc)
+
+        Parse a GPX document
+
+        :param doc: The GPX file
+        :type doc: file
+        :return: The parsed GPX object
+        :rtype: GPX
+
+    .. py:method:: to_waypoints()
+
+        Convert the parsed GPX document into a list of waypoints
+
+        :return: A list of waypoints
+        :rtype: list[Waypoint]
+
+    .. py:method:: to_tracks()
+
+        Convert the parsed GPX document into a list of tracks
+
+        :return: A list of tracks
+        :rtype: list[Track]
+
+    .. py:method:: to_routes()
+        
+        Convert the parsed GPX document into a list of routes
+
+        :return: A list of routes
+        :rtype: list[Route]

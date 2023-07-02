@@ -1,0 +1,157 @@
+#####
+Point
+#####
+
+"Points" refer to precise geographical locations. 
+These are identified by latitude, longitude, and optionally, elevation.
+
+`GPSUtils` uses two types of points: :class:`Waypoint` and :class:`Routepoint`.
+Waypoints and Routepoints are structurally identical, but differ in usage;
+Waypoints are used in :class:`Track` and :class:`Region`, while Routepoints are used in :class:`Route`.
+
+----
+
+.. _waypoint:
+
+*********
+Waypoints
+*********
+
+Using Waypoints
+==================
+
+Waypoints are used with :class:`Track` and :class:`Region` like so:
+
+1. Create the waypoint(s)
+2. Add the waypoint(s) to a Track or Region using the `add_waypoint` method
+3. Perform some operations with the Track or Region
+
+Example
+-------
+
+.. code-block:: python
+
+    import gpsutils
+
+    latitude = 1
+    longitude = 1
+    elevation = 1
+
+    # 2D point
+    point2d = gpsutils.Waypoint(latitude, longitude)
+    
+    # or
+
+    # 3D point
+    point3d = gpsutils.Waypoint(latitude, longitude, elevation)
+    
+    # Add to track
+    track = gpsutils.Track()
+    track.add_waypoint(waypoint2d)
+    track.add_waypoint(waypoint3d)
+
+Check it
+========
+
+.. code-block:: python
+    
+    >>> print(point2d)
+    Waypoint(latitude=1, longitude=1, elevation=0, time=, name=, description=)
+
+    >>> print(point3d)
+    Waypoint(latitude=1, longitude=1, elevation=1, time=, name=, description=)
+
+----
+
+.. _routepoint:
+
+***********
+Routepoints
+***********
+
+Using Routepoints
+==================
+
+Routepoints are used with :class:`Route` like so:
+
+1. Create the routepoint(s)
+2. Add the routepoint(s) to a Route
+3. Perform some operations with the Route
+
+Example
+=======
+
+.. code-block:: python
+
+    import gpsutils
+
+    latitude = 2
+    longitude = 2
+    elevation = 2
+
+    # 2D point
+    routepoint2d = gpsutils.Routepoint(latitude, longitude)
+
+    # or
+
+    # 3D point
+    routepoint3d = gpsutils.Routepoint(latitude, longitude, elevation)
+
+    # Add to track
+    route = gpsutils.Route()
+    route.add_routepoint(routepoint2d)
+    route.add_routepoint(routepoint3d)
+
+Check it
+========
+
+.. code-block:: python
+    
+    >>> print(routepoint2d)
+    Routepoint(latitude=2, longitude=2, elevation=0, time=, name=, description=)
+
+    >>> print(routepoint3d)
+    Routepoint(latitude=2, longitude=2, elevation=2, time=, name=, description=)
+
+----
+
+****************
+Comparing Points
+****************
+
+The comparison method :class:`Waypoint.compare_m` returns the distance between points.
+Since `Routepoint` derives from `Waypoint`, the comparison can be made between combinations of them.
+
+For example,
+
+.. code-block:: python
+
+    import gpsutils
+
+    waypoint2d = gpsutils.Waypoint(0, 0)
+    waypoint3d = gpsutils.Waypoint(1, 1, 1)
+    routepoint = gpsutils.Routepoint(2, 2)
+
+Check it
+========
+
+.. code-block:: python
+
+    >>> print(waypoint2d.compare_m(waypoint3d))
+    157249.38127194397
+
+    >>> print(waypoint2d.compare_m(routepoint))
+    314474.80510086863
+
+    >>> print(waypoint3d.compare_m(routepoint))
+    157225.4320380729
+
+----
+
+**********************
+Where to go from here?
+**********************
+
+Check out the :doc:`../api/point` API Reference
+
+Try out the :doc:`../tutorial` if you haven't already!

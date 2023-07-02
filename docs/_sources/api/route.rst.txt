@@ -1,0 +1,82 @@
+#####
+Route
+#####
+
+.. py:class:: Route
+
+    Represents a route
+
+    .. py:attribute:: route
+      
+        List of all routepoints that comprise a route
+        
+        :type: list[Routepoint]
+
+    .. py:attribute:: name
+
+        An optional name for the route
+
+        :type: Optional[str]
+
+    .. py:attribute:: description
+
+        An optional description for the route
+
+        :type: Optional[str]
+
+    .. py:method:: set(route)
+
+        Set the route
+
+        :param route: The route to set
+        :type route: list[Routepoint]
+
+    .. py:method:: reset()
+
+        Reset the route
+
+    .. py:method:: add_routepoint(routepoint)
+
+        Add a routepoint to the end of the route
+
+        :param routepoint: The routepoint to add
+        :type routepoint: Routepoint
+
+    .. py:method:: remove_routepoint(routepoint)
+
+        Remove a routepoint from the route and return it
+
+        :param routepoint: The routepoint to remove
+        :type routepoint: Routepoint
+        :return: The removed routepoint
+        :rtype: Routepoint
+
+    .. py:method:: get_edges()
+
+        Get the edges between each route
+
+        :return: A list of the edges connecting the routepoints in the route
+        :rtype: List[Tuple[Routepoint, Routepoint]]
+
+    .. py:method:: edge_distances_m()
+
+        Get the distance between each point in a route
+
+        :return: A list of the distances between each routepoint in a route in metres
+        :rtype: List[float]
+
+    .. py:method:: route_distance_m()
+
+        Get the distance of the route in metres
+
+        :return: The overall distance of the route in metres
+        :rtype: float
+
+    .. py:method:: distance_to_end_m(routepoint)
+
+        Get the distance to the end of the route in metres
+
+        :param routepoint: The routepoint to compare
+        :type routepoint: Routepoint
+        :return: The distance to the end of the route in metres
+        :rtype: float
