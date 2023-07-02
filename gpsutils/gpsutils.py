@@ -3,7 +3,6 @@ import datetime
 import math
 import gpxpy
 import gpxpy.gpx
-import xml.etree.ElementTree as ET
 from typing import List, Tuple
 
 # Earth’s radius in metres
