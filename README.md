@@ -1,4 +1,6 @@
+![logo](docs/_images/logo.png)
+
 # gpsutils
 
-gpsutils is a Python library for basic GPS and GPX utilities.
+Basic GPS and GPX utilities.
 Designed to be short and simple.
